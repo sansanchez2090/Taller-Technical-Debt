@@ -1,6 +1,5 @@
 node_modules/
-*.backup.pptx
-.DS_Store
-Thumbs.db
-*.log
+.env
 coverage/
+data/subscriptions_backup.json
+*.tmp

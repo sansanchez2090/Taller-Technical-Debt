@@ -1,0 +1,76 @@
+name: Quality Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '24'
+
+# Si el repositorio raíz es "taller-casa/" y no "fastpay-service/", descomente:
+# defaults:
+#   run:
+#     working-directory: fastpay-service
+
+jobs:
+  gate-1-lint:
+    name: Gate 1 - Lint (ESLint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  gate-2-security:
+    name: Gate 2 - Auditoria de dependencias
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=high
+
+  gate-3-4-tests-coverage:
+    name: Gate 3/4 - Pruebas y cobertura minima 80%
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - name: Pruebas + umbral de cobertura (falla si lineas, ramas o funciones < 80%)
+        run: npm run test:coverage
+
+  # Unico check a marcar como "Required" en la proteccion de la rama main.
+  # if: always() evita que un job "skipped" cuente como exito.
+  quality-gate:
+    name: Quality Gate
+    needs: [gate-1-lint, gate-2-security, gate-3-4-tests-coverage]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluar gates
+        run: |
+          if [ "${{ contains(needs.*.result, 'failure') }}" = "true" ] || [ "${{ contains(needs.*.result, 'cancelled') }}" = "true" ] || [ "${{ contains(needs.*.result, 'skipped') }}" = "true" ]; then
+            echo "Quality Gate BLOQUEADO"
+            exit 1
+          fi
+          echo "Quality Gate APROBADO"

@@ -6,7 +6,7 @@
  * 3. Errores de cálculo en coma flotante.
  */
 
-const billingEngine = require('../src/legacy_billing_engine');
+const billingEngine = require('../legacy/legacy_billing_engine');
 const fs = require('fs');
 const path = require('path');
 

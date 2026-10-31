@@ -1,26 +1,27 @@
 {
   "name": "fastpay-billing-service",
-  "version": "1.0.0-legacy",
-  "description": "Microservicio legado de facturación y suscripciones para FastPay Global",
+  "version": "2.0.0",
+  "description": "Microservicio de facturación y suscripciones de FastPay Global (arquitectura hexagonal)",
   "main": "src/server.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "simulate": "node scripts/simulate_billing.js",
-    "test": "node --test",
-    "lint": "npx eslint src/"
+  "engines": {
+    "node": ">=22.8.0"
   },
-  "keywords": [
-    "technical-debt",
-    "legacy-code",
-    "hexagonal-architecture",
-    "iso-25010"
-  ],
-  "author": "FastPay Global Engineering (Legacy)",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/server.js",
+    "simulate": "node scripts/simulate_billing.js",
+    "simulate:fixed": "node scripts/simulate_billing_fixed.js",
+    "test": "node --test --test-concurrency=1 \"test/**/*.test.js\"",
+    "test:coverage": "node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include=\"src/domain/**/*.js\" --test-coverage-include=\"src/application/**/*.js\" --test-coverage-lines=80 --test-coverage-branches=80 --test-coverage-functions=80 \"test/**/*.test.js\"",
+    "lint": "eslint src/ --max-warnings=0",
+    "audit:ci": "npm audit --audit-level=high"
+  },
+  "keywords": ["technical-debt", "hexagonal-architecture", "iso-25010"],
+  "author": "FastPay Global Engineering",
   "license": "UNLICENSED",
   "dependencies": {
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "eslint": "^8.57.1"
+    "eslint": "^8.57.0"
   }
 }

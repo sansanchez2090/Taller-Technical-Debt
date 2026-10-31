@@ -72,7 +72,14 @@ const PRICING_CASES = [
   },
   {
     name: 'US: ENTERPRISE_PLUS anual descuenta 15%; WIRE_TRANSFER no recarga fuera de MX',
-    subscription: { country: 'US', plan: 'ENTERPRISE_PLUS', billingCycle: 'ANNUAL', amount: 599.5, paymentMethod: 'WIRE_TRANSFER' },
+    subscription: {
+      country: 'US',
+      plan: 'ENTERPRISE_PLUS',
+      billingCycle: 'ANNUAL',
+      amount: 599.5,
+      paymentMethod: 'WIRE_TRANSFER',
+      lastBilledAt: '2025-10-24T00:00:00Z',
+    },
     options: {},
     expected: { baseAmount: 599.5, discount: 89.925, taxes: 42.0399375, surcharge: 0, finalTotal: 551.6149375 },
   },

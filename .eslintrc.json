@@ -1,13 +1,9 @@
 {
-  "env": {
-    "node": true,
-    "es2021": true
-  },
+  "root": true,
+  "env": { "node": true, "es2021": true },
   "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
+  "parserOptions": { "ecmaVersion": "latest", "sourceType": "script" },
+  "ignorePatterns": ["legacy/", "node_modules/", "coverage/"],
   "rules": {
     "no-unused-vars": "warn",
     "no-undef": "error",
@@ -15,6 +11,7 @@
     "max-depth": ["error", 3],
     "no-var": "error",
     "prefer-const": "warn",
+    "eqeqeq": "error",
     "no-prototype-builtins": "off"
   }
 }
