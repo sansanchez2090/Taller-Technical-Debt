@@ -1,0 +1,74 @@
+[
+  {
+    "incidentId": "INC-2026-0704",
+    "date": "2026-07-04",
+    "title": "Cobro duplicado en facturación de inicio de mes",
+    "rootCause": "Condición de carrera al procesar suscripciones concurrentes sobre subscriptions.json sin control de concurrencia ni bloqueo transaccional.",
+    "affectedCustomers": 142,
+    "downtimeHours": 3.5,
+    "financialLossUSD": 8750.00,
+    "engineeringHoursSpent": 26,
+    "iso25010Violation": "Fiabilidad (Tolerancia a fallos) y Mantenibilidad (Modularidad)",
+    "fowlerQuadrant": "Inadvertida - Temeraria (Desconocimiento de patrones de concurrencia y atomicidad)"
+  },
+  {
+    "incidentId": "INC-2026-0718",
+    "date": "2026-07-18",
+    "title": "Microservicio colapsado por bloqueo de Event Loop",
+    "rootCause": "Llamadas de I/O síncronas masivas (fs.readFileSync) dentro del bucle de procesamiento de cobros, bloqueando el thread principal de Node.js.",
+    "affectedCustomers": 820,
+    "downtimeHours": 6.0,
+    "financialLossUSD": 14200.00,
+    "engineeringHoursSpent": 34,
+    "iso25010Violation": "Eficiencia de Desempeño (Comportamiento temporal)",
+    "fowlerQuadrant": "Deliberada - Temeraria (Se usó sync I/O para 'salir a producción rápido' el trimestre pasado)"
+  },
+  {
+    "incidentId": "INC-2026-0802",
+    "date": "2026-08-02",
+    "title": "Rechazo de pasarela de pago por timeout no controlado",
+    "rootCause": "Ausencia de política de reintentos (Retry / Circuit Breaker) y timeout hardcodeado en la pasarela externa de pago.",
+    "affectedCustomers": 310,
+    "downtimeHours": 2.0,
+    "financialLossUSD": 6300.00,
+    "engineeringHoursSpent": 18,
+    "iso25010Violation": "Fiabilidad (Recuperabilidad) y Seguridad",
+    "fowlerQuadrant": "Inadvertida - Prudente (No se anticipó la degradación del proveedor externo en picos de tráfico)"
+  },
+  {
+    "incidentId": "INC-2026-0815",
+    "date": "2026-08-15",
+    "title": "Regresión masiva tras parche urgente de descuentos",
+    "rootCause": "Modificación directa en el método gigante processSubscriptionBilling sin pruebas unitarias automatizadas; se rompió la facturación de clientes empresariales.",
+    "affectedCustomers": 95,
+    "downtimeHours": 4.5,
+    "financialLossUSD": 11800.00,
+    "engineeringHoursSpent": 40,
+    "iso25010Violation": "Mantenibilidad (Modificabilidad y Testeabilidad)",
+    "fowlerQuadrant": "Deliberada - Temeraria (Hotfix directo en producción sin suite de pruebas)"
+  },
+  {
+    "incidentId": "INC-2026-0829",
+    "date": "2026-08-29",
+    "title": "Filtración de credenciales de staging en logs de producción",
+    "rootCause": "Claves de API y tokens de conexión hardcodeados en código fuente e impresos vía console.log en bloques catch.",
+    "affectedCustomers": 0,
+    "downtimeHours": 1.0,
+    "financialLossUSD": 3500.00,
+    "engineeringHoursSpent": 15,
+    "iso25010Violation": "Seguridad (Confidencialidad)",
+    "fowlerQuadrant": "Deliberada - Temeraria (Atajo por pereza de configurar variables de entorno en CI/CD)"
+  },
+  {
+    "incidentId": "INC-2026-0912",
+    "date": "2026-09-12",
+    "title": "Inconsistencia de saldos por cálculo con coma flotante",
+    "rootCause": "Operaciones monetarias directas con floats de JavaScript (0.1 + 0.2 != 0.3) sin centavos ni enteros (Primitive Obsession).",
+    "affectedCustomers": 530,
+    "downtimeHours": 0.0,
+    "financialLossUSD": 4920.00,
+    "engineeringHoursSpent": 28,
+    "iso25010Violation": "Adecuación Funcional (Exactitud)",
+    "fowlerQuadrant": "Inadvertida - Temeraria (Primitive Obsession por falta de tipado de valor / Value Objects)"
+  }
+]

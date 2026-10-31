@@ -1,0 +1,63 @@
+[
+  {
+    "id": "sub_101",
+    "customerEmail": "carlos.mendoza@empresa-alfa.com",
+    "plan": "ENTERPRISE",
+    "amount": 299.99,
+    "currency": "USD",
+    "country": "CO",
+    "billingCycle": "MONTHLY",
+    "status": "ACTIVE",
+    "paymentMethod": "CREDIT_CARD",
+    "cardLast4": "4242",
+    "balance": 0,
+    "lastBilledAt": "2026-09-24T00:00:00Z",
+    "retryCount": 0
+  },
+  {
+    "id": "sub_102",
+    "customerEmail": "laura.torres@startup-beta.io",
+    "plan": "PRO",
+    "amount": 99,
+    "currency": "USD",
+    "country": "MX",
+    "billingCycle": "MONTHLY",
+    "status": "ACTIVE",
+    "paymentMethod": "CREDIT_CARD",
+    "cardLast4": "1111",
+    "balance": 344.52,
+    "lastBilledAt": "2026-10-31T18:27:20.943Z",
+    "retryCount": 0,
+    "lastTransactionRef": "TX_1793471240943_1"
+  },
+  {
+    "id": "sub_103",
+    "customerEmail": "dev.admin@fintech-gamma.org",
+    "plan": "ENTERPRISE_PLUS",
+    "amount": 599.5,
+    "currency": "USD",
+    "country": "US",
+    "billingCycle": "ANNUAL",
+    "status": "ACTIVE",
+    "paymentMethod": "WIRE_TRANSFER",
+    "cardLast4": null,
+    "balance": 150,
+    "lastBilledAt": "2025-10-24T00:00:00Z",
+    "retryCount": 2
+  },
+  {
+    "id": "sub_104",
+    "customerEmail": "usuario.moroso@freemail.com",
+    "plan": "STARTER",
+    "amount": 29,
+    "currency": "USD",
+    "country": "AR",
+    "billingCycle": "MONTHLY",
+    "status": "SUSPENDED",
+    "paymentMethod": "CREDIT_CARD",
+    "cardLast4": "9999",
+    "balance": 58,
+    "lastBilledAt": "2026-08-24T00:00:00Z",
+    "retryCount": 4
+  }
+]

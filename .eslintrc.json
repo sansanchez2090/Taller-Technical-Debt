@@ -1,0 +1,20 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-undef": "error",
+    "complexity": ["error", 8],
+    "max-depth": ["error", 3],
+    "no-var": "error",
+    "prefer-const": "warn",
+    "no-prototype-builtins": "off"
+  }
+}
