@@ -201,6 +201,8 @@ Regla de dependencia: `infrastructure → application → domain`; los puertos s
 
    **Evidencia adicional de protección de rama:** un `git push` directo a `main` fue rechazado por GitHub (`GH013: Repository rule violations found for refs/heads/main`): _"Changes must be made through a pull request"_ y _"Required status check 'Quality Gate' is expected"_. Esto demuestra que ni siquiera el propietario puede saltarse los gates.
 
+2. **Pull Request Exitoso:** [PR #1](https://github.com/sansanchez2090/Taller-Technical-Debt/pull/2) — todos los checks en verde y merge permitido. Captura: ![PR Aprobado](docs/pr-aprobado.png). Run exitoso: [http://github.com/sansanchez2090/Taller-Technical-Debt/actions/runs/41236254741](http://github.com/sansanchez2090/Taller-Technical-Debt/actions/runs/41236254741).
+
 Salida final de `npm run test:coverage` (121 pruebas, 0 fallos):
 
 ```text
